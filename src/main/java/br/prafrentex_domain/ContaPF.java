@@ -16,7 +16,7 @@ public class ContaPF {
     private Long documento;
     
     
-    private String cpf;
+    public String cpf;
     private static final String tipoDocRG = "RG";
     private static final String tipoDocHabilitacao = "CNH";
     
