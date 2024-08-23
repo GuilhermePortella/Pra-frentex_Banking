@@ -7,3 +7,11 @@ Nossa vida é:
 - SOLID
 - TDD
 - Lombok
+
+O que ja temos: 
+
+Validação de CPF usuario.
+
+mapeamento inicial de conta PJ e PF 
+
+Atributos para conta PJ e PF
