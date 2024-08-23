@@ -1,5 +1,8 @@
 br\prafrentex_domain\ContaPJ.class
-br\prafrentex_banking\pra\frentex_banking\PraFrentex_Banking.class
+br\prafrentex_resource\Main.class
 br\prafrentex_domain\ContaPF.class
 br\prafrentex_service\ServiceProcess.class
-br\prafrentex_resource\Maino.class
+br\prafrentex_service\CPFValidation\ValidCPF.class
+br\prafrentex_service\AbrirContaPJ.class
+br\prafrentex_service\AbrirContaPF.class
+br\prafrentex_service\CPFValidation\ValidCPFValidator.class
