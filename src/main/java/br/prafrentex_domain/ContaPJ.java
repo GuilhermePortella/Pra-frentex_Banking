@@ -6,7 +6,7 @@ package br.prafrentex_domain;
  */
 public class ContaPJ {
 
-    private String CNPJ;
+    public String CNPJ;
     private String razaoSocial;
     private String nomeFantasia;
     private String inscricaoEstadual;
