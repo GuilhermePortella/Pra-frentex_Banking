@@ -4,5 +4,7 @@ br\prafrentex_domain\ContaPF.class
 br\prafrentex_service\ServiceProcess.class
 br\prafrentex_service\CPFValidation\ValidCPF.class
 br\prafrentex_service\AbrirContaPJ.class
+br\prafrentex_service\CNPJValidation\ValidCPFValidator.class
 br\prafrentex_service\AbrirContaPF.class
+br\prafrentex_service\CNPJValidation\ValidCNPJ.class
 br\prafrentex_service\CPFValidation\ValidCPFValidator.class
