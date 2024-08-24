@@ -11,7 +11,9 @@ public class ServiceProcess {
     }
     
     public void ServiceProcessPrint(){
-        AbrirContaPF usuario = new AbrirContaPF();
+        //AbrirContaPF usuario = new AbrirContaPF();
+        AbrirContaPJ usuarioPJ = new AbrirContaPJ();
+        usuarioPJ.solicitarCNPJValido();
 
     }
     
