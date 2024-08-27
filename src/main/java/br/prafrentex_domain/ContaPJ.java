@@ -7,9 +7,9 @@ package br.prafrentex_domain;
 public class ContaPJ {
 
     public String CNPJ;
-    private String razaoSocial;
-    private String nomeFantasia;
-    private String inscricaoEstadual;
+    public String razaoSocial;
+    public String nomeFantasia;
+    public String inscricaoEstadual;
 
     public String getCNPJ() {
         return CNPJ;
