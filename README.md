@@ -1,6 +1,9 @@
 "# Pra-frentex_Banking" 
 
-![Banking.jpg](src/resources/Banking.jpg)
+<br>
+<p align="center">
+<img width="250" height="250" src="src/resources/Banking.jpg">
+</p>
 
 Nossa vida é:
 
