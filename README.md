@@ -1,5 +1,7 @@
 "# Pra-frentex_Banking" 
 
+![Banking.jpg](src/resources/Banking.jpg)
+
 Nossa vida é:
 
 - Boilerplate code
