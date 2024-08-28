@@ -1,7 +1,6 @@
 package br.prafrentex_service;
 
 import br.prafrentex_domain.ContaPF;
-import br.prafrentex_service.CPFValidation.ValidCPF;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +9,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 /**
@@ -100,7 +98,6 @@ public class AbrirContaPF extends ContaPF {
         }
     }
 
-    // Obtém uma opção do usuário, garantindo que seja um valor válido
     private int obterOpcao(Scanner scanner) {
         while (true) {
             System.out.print("Digite a opção (1, 2 ou 3): ");
@@ -118,12 +115,10 @@ public class AbrirContaPF extends ContaPF {
         }
     }
 
-    // Configura o tipo de documento
     private void configurarDocumentoTipo(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
-    // Obtém o número do documento do usuário
     private String obterDocumento(Scanner scanner, String tipoDocumento) {
         System.out.printf("Digite o número do %s: ", tipoDocumento);
         return scanner.nextLine().trim(); // Usa trim() para remover espaços em branco ao redor
