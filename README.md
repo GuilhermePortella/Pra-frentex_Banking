@@ -1,17 +1,16 @@
-"# Pra-frentex_Banking" 
+# Pra-frentex_Banking
 
-<br>
-<p align="center">
-<img width="250" height="250" src="src/resources/Banking.jpg">
-</p>
+<img align="right" width="250" height="250" src="src/resources/Banking.jpg">
 
-Nossa vida é:
+
+
+### Nossa vida é:
 
 - Boilerplate code
 - clean architecture
 - SOLID
-- TDD
-- Lombok
+- TDD mas (Nem sempre)
+- Lombok ou Não
 
 O que ja temos: 
 
@@ -25,4 +24,4 @@ Solicitação de dados de clientes Pessoa Física e Pessoa Jurídica
 
 Validação de tipos de documentos 
 
-Criação de listas de clientes com os dados solicitados
+Criação de listas de clientes com os dados do mapeamento inicial 
