@@ -43,4 +43,54 @@ public class Usuario {
     
     public Usuario() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenhaHash() {
+        return senhaHash;
+    }
+
+    public void setSenhaHash(String senhaHash) {
+        this.senhaHash = senhaHash;
+    }
+
+    public ContaPF getContaPF() {
+        return contaPF;
+    }
+
+    public void setContaPF(ContaPF contaPF) {
+        this.contaPF = contaPF;
+    }
+
+    public ContaPJ getContaPJ() {
+        return contaPJ;
+    }
+
+    public void setContaPJ(ContaPJ contaPJ) {
+        this.contaPJ = contaPJ;
+    }
+    
+    
 }
