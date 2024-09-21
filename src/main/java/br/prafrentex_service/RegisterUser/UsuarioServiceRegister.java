@@ -1,4 +1,4 @@
-package br.prafrentex_service.loginUser;
+package br.prafrentex_service.RegisterUser;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
