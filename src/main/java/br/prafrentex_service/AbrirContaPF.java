@@ -1,6 +1,7 @@
 package br.prafrentex_service;
 
 import br.prafrentex_domain.ContaPF;
+import br.prafrentex_domain.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import org.hibernate.validator.constraints.br.CPF;
  *
  * @author Guilherme
  */
-public class AbrirContaPF extends ContaPF {
+public class AbrirContaPF extends Usuario {
 
     @CPF(message = "CPF inválido")
     private String cpf;
@@ -138,16 +139,16 @@ public class AbrirContaPF extends ContaPF {
         }
     }
 
-    private List<AbrirContaPF> contasPF = new ArrayList<>();
+    private List<Usuario> contasPF = new ArrayList<>();
 
     public void adicionarContaPF(AbrirContaPF conta) {
         contasPF.add(conta);
     }
 
-    public List<ContaPF> criarListaContasPF() {
-        List<ContaPF> listaContas = new ArrayList<>();
-        for (AbrirContaPF conta : contasPF) {
-            ContaPF contaPF = new ContaPF();
+    public List<Usuario> criarListaContasPF() {
+        List<Usuario> listaContas = new ArrayList<>();
+        for (Usuario conta : contasPF) {
+            Usuario contaPF = new Usuario();
             contaPF.nome = conta.nome;
             contaPF.sobrenome = conta.sobrenome;
             contaPF.idade = conta.idade;

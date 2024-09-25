@@ -1,13 +1,11 @@
 package br.prafrentex_domain;
 
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
 
 /**
  *
@@ -20,11 +18,26 @@ public class Usuario {
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório")
-    private String nome;
+    public String nome;
+    public String sobrenome;
+    public String apelido;
+
+    public int idade;
+
+    public String tipoDocumento;
+
+    public String cpf;
+    public static final String tipoDocRG = "RG";
+    public String documentoRG;
+    public static final String tipoDocHabilitacao = "CNH";
+    public String documentoCNH;
 
     @Email(message = "Email deve ser válido")
     @NotBlank(message = "Email é obrigatório")
-    private String email;
+    public String email;
+    
+    
+    
 
     @NotBlank(message = "Senha é obrigatória")
     private String senhaHash;
@@ -40,7 +53,18 @@ public class Usuario {
         this.email = email;
         this.senhaHash = senhaHash;
     }
+
+    public Usuario(String nome, String sobrenome, int idade, String cpf, String email) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.idade = idade;
+        this.cpf = cpf;
+        this.email = email;
+    }
     
+    
+    
+
     public Usuario() {
     }
 
@@ -92,5 +116,61 @@ public class Usuario {
         this.contaPJ = contaPJ;
     }
     
-    
+        public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDocumentoRG() {
+        return documentoRG;
+    }
+
+    public void setDocumentoRG(String documentoRG) {
+        this.documentoRG = documentoRG;
+    }
+
+    public String getDocumentoCNH() {
+        return documentoCNH;
+    }
+
+    public void setDocumentoCNH(String documentoCNH) {
+        this.documentoCNH = documentoCNH;
+    }
+
+
 }
