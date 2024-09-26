@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Guilherme
  */
-public class Usuario {
+public class Usuario extends ContaPF{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
