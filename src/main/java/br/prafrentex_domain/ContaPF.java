@@ -16,8 +16,6 @@ public class ContaPF {
     public String conta;
     public String agencia;
 
-
-
     public String gettipoDocumento() {
         return tipoDocumento;
     }
