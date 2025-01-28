@@ -13,6 +13,7 @@ public class ServiceProcess {
     public void ServiceProcessPrint(){
         AbrirContaPF usuarioPF = new AbrirContaPF();
         usuarioPF.exibirInformacoesPessoa();
+        
         AbrirContaPJ usuarioPJ = new AbrirContaPJ();
         usuarioPJ.apresentarDadosEmLista();
 
