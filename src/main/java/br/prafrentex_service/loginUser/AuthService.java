@@ -7,6 +7,7 @@ import java.util.Scanner;
 import org.mindrot.jbcrypt.BCrypt;
 
 import br.prafrentex_domain.Usuario;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,23 +29,30 @@ public class AuthService {
     }
 
     private Usuario coletarDadosUsuario() {
+        Usuario usuario = new Usuario();
+
         System.out.println("Bem-vindo ao sistema de cadastro de usuários");
 
         System.out.print("Informe seu nome: ");
-        String nome = scanner.nextLine();
+        usuario.setNome(scanner.nextLine());
 
         System.out.print("Informe seu sobrenome: ");
-        String sobrenome = scanner.nextLine();
+        usuario.setSobrenome(scanner.nextLine());
 
-        System.out.print("Informe sua idade: ");
-        int idade = Integer.parseInt(scanner.nextLine());
+        System.out.print("Informe sua data de nascimento (YYYY-MM-DD): ");
+        usuario.setDataNascimento(LocalDate.EPOCH.parse(scanner.nextLine()));
 
         System.out.print("Informe seu email: ");
-        String email = scanner.nextLine();
+        usuario.setEmail(scanner.nextLine());
 
         System.out.print("Informe seu CPF: ");
-        String cpf = scanner.nextLine();
-        return new Usuario(nome, sobrenome, idade, email, cpf);
+        usuario.setCpf(scanner.nextLine());
+
+        System.out.print("Informe sua senha: ");
+        String senha = scanner.nextLine();
+        usuario.setSenhaHash(SenhaService.gerarHashSenha(senha));
+
+        return usuario;
     }
 
     private void adicionarContaPF(Usuario usuario, String agencia, String conta) {
@@ -65,7 +73,6 @@ public class AuthService {
             System.out.println("\nExibindo todos os usuários cadastrados:");
             for (Usuario usuario : listaUsuarios) {
                 System.out.println("Nome: " + usuario.getNome() + " " + usuario.getSobrenome());
-                System.out.println("Idade: " + usuario.getIdade());
                 System.out.println("Email: " + usuario.getEmail());
                 System.out.println("CPF: " + usuario.getCpf());
                 System.out.println("Agência: " + usuario.getAgencia());

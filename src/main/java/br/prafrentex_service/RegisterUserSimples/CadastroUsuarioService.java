@@ -34,7 +34,7 @@ public class CadastroUsuarioService extends Usuario {
             Usuario contaPF = new Usuario();
             contaPF.setNome(conta.getNome());
             contaPF.setSobrenome(conta.getSobrenome());
-            contaPF.setIdade(conta.getIdade());
+            contaPF.setDataNascimento(conta.getDataNascimento());
             contaPF.setEmail(conta.getEmail());
             contaPF.setCpf(conta.getCpf());
             contaPF.setAgencia(conta.getAgencia());
@@ -53,8 +53,8 @@ public class CadastroUsuarioService extends Usuario {
         System.out.print("Informe seu sobrenome: ");
         this.sobrenome = scanner.nextLine();
 
-        System.out.print("Informe sua idade: ");
-        this.idade = Integer.parseInt(scanner.nextLine());
+//        System.out.print("Informe sua idade: ");
+//        this.idade = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Informe seu email: ");
         this.email = scanner.nextLine();
@@ -62,7 +62,8 @@ public class CadastroUsuarioService extends Usuario {
         System.out.print("Informe seu CPF: ");
         this.cpf = scanner.nextLine();
 
-        return new Usuario(nome, sobrenome, idade, email, cpf);
+        return new Usuario(nome, sobrenome, email, cpf);
+        //return new Usuario(nome, sobrenome, idade, email, cpf);
     }
 
     public void exibirDadosUsuarios() {
@@ -73,7 +74,6 @@ public class CadastroUsuarioService extends Usuario {
             System.out.println("\nExibindo todos os usuários cadastrados:");
             for (Usuario usuario : listaUsuarios) {
                 System.out.println("Nome: " + usuario.getNome() + " " + usuario.getSobrenome());
-                System.out.println("Idade: " + usuario.getIdade());
                 System.out.println("Email: " + usuario.getEmail());
                 System.out.println("CPF: " + usuario.getCpf());
                 System.out.println("Agência: " + usuario.getAgencia());
