@@ -2,6 +2,7 @@ package br.prafrentex_service.RegisterUser;
 
 import org.mindrot.jbcrypt.BCrypt;
 import br.prafrentex_domain.Usuario;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ejb.Stateless;
@@ -26,8 +27,9 @@ public class UsuarioService {
 
         String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
 
-        Usuario usuario = new Usuario(nome, email, senhaHash);
-
+        
+        Usuario usuario = new  Usuario(nome, nome, LocalDate.MIN, nome, email, senhaHash);
+        
         return usuarioDAO.salvar(usuario);
     }
 

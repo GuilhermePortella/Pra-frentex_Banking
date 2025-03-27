@@ -1,6 +1,8 @@
 package br.prafrentex_service;
 
 import br.prafrentex_domain.Usuario;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -51,10 +53,6 @@ public class AbrirContaPF extends Usuario {
         return violations.isEmpty();
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
     public void solicitarNomeIdadePessoa() {
         Scanner scanner = new Scanner(System.in);
 
@@ -64,8 +62,24 @@ public class AbrirContaPF extends Usuario {
         System.out.println("Digite o seu sobrenome: ");
         this.sobrenome = scanner.nextLine();
 
-        System.out.println("Digite sua idade: ");
-        this.idade = scanner.nextInt();
+        System.out.println("Digite sua data de nascimento (formato: dd/MM/yyyy): ");
+        this.dataNascimento = solicitarDataNascimento(scanner);
+    }
+
+    private LocalDate solicitarDataNascimento(Scanner scanner) {
+        String dataStr;
+        LocalDate dataNascimento = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        while (dataNascimento == null) {
+            dataStr = scanner.nextLine();
+            try {
+                dataNascimento = LocalDate.parse(dataStr, formatter);
+            } catch (Exception e) {
+                System.out.println("Formato de data inválido. Por favor, insira a data no formato correto (dd/MM/yyyy).");
+            }
+        }
+        return dataNascimento;
     }
 
     public void solicitarDadosPessoa() {
@@ -125,10 +139,9 @@ public class AbrirContaPF extends Usuario {
     }
 
     public void exibirInformacoesPessoa() {
-
         System.out.println("Nome: " + this.nome);
         System.out.println("Sobrenome: " + this.sobrenome);
-        System.out.println("Idade: " + this.idade);
+        System.out.println("Idade: " + calcularIdade(this.dataNascimento)); // Calcula a idade com base na data de nascimento
 
         if (this.tipoDocumento.contains("RG") && this.documentoRG != null && !this.documentoRG.isEmpty()) {
             System.out.println("RG: " + this.documentoRG);
@@ -163,6 +176,14 @@ public class AbrirContaPF extends Usuario {
             listaContas.add(contaPF);
         }
         return listaContas;
+    }
+
+    private int calcularIdade(LocalDate dataNascimento) {
+        if (dataNascimento == null) {
+            return 0;
+        }
+        LocalDate hoje = LocalDate.now();
+        return hoje.getYear() - dataNascimento.getYear() - (hoje.getDayOfYear() < dataNascimento.getDayOfYear() ? 1 : 0);
     }
 
 }

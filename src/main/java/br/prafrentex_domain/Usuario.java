@@ -1,5 +1,7 @@
 package br.prafrentex_domain;
 
+import java.time.LocalDate;
+import java.time.Period;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,18 +13,17 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Guilherme
  */
-public class Usuario extends ContaPF{
+public class Usuario extends ContaPF {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
+    public LocalDate dataNascimento;
 
     @NotBlank(message = "Nome é obrigatório")
     public String nome;
     public String sobrenome;
     public String apelido;
-
-    public int idade;
 
     public String tipoDocumento;
 
@@ -35,9 +36,6 @@ public class Usuario extends ContaPF{
     @Email(message = "Email deve ser válido")
     @NotBlank(message = "Email é obrigatório")
     public String email;
-    
-    
-    
 
     @NotBlank(message = "Senha é obrigatória")
     private String senhaHash;
@@ -47,23 +45,31 @@ public class Usuario extends ContaPF{
 
     @ManyToOne
     private ContaPJ contaPJ;
+    
+    
 
-    public Usuario(String nome, String email, String senhaHash) {
+    public Usuario(String nome, String email, String senhaHash, String cpf1) {
         this.nome = nome;
         this.email = email;
         this.senhaHash = senhaHash;
     }
 
-    public Usuario(String nome, String sobrenome, int idade, String cpf, String email) {
+    public Usuario(String nome, String sobrenome, LocalDate dataNascimento, String cpf, String email, String senhaHash) {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.email = email;
+        this.senhaHash = senhaHash;
     }
-    
-    
-    
+
+    private int calcularIdade() {
+        return Period.between(dataNascimento, LocalDate.now()).getYears();
+    }
+
+    private String gerarUsername() {
+        return (nome.toLowerCase() + sobrenome.toLowerCase()).replaceAll("\\s+", "");
+    }
 
     public Usuario() {
     }
@@ -115,8 +121,8 @@ public class Usuario extends ContaPF{
     public void setContaPJ(ContaPJ contaPJ) {
         this.contaPJ = contaPJ;
     }
-    
-        public String getSobrenome() {
+
+    public String getSobrenome() {
         return sobrenome;
     }
 
@@ -130,14 +136,6 @@ public class Usuario extends ContaPF{
 
     public void setApelido(String apelido) {
         this.apelido = apelido;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public String getTipoDocumento() {
@@ -172,5 +170,28 @@ public class Usuario extends ContaPF{
         this.documentoCNH = documentoCNH;
     }
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getConta() {
+        return conta;
+    }
+
+    public void setConta(String conta) {
+        this.conta = conta;
+    }
+
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
 
 }
