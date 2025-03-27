@@ -163,7 +163,7 @@ public class AbrirContaPF extends Usuario {
             Usuario contaPF = new Usuario();
             contaPF.nome = conta.nome;
             contaPF.sobrenome = conta.sobrenome;
-            contaPF.idade = conta.idade;
+            contaPF.dataNascimento = conta.dataNascimento;
             contaPF.tipoDocumento = conta.tipoDocumento;
 
             if (conta.documentoRG != null && !conta.documentoRG.isEmpty()) {
