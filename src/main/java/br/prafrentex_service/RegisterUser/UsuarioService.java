@@ -27,7 +27,6 @@ public class UsuarioService {
 
         String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
 
-        
         Usuario usuario = new  Usuario(nome, nome, LocalDate.MIN, nome, email, senhaHash);
         
         return usuarioDAO.salvar(usuario);
@@ -43,6 +42,7 @@ public class UsuarioService {
     }
 
     Usuario registrarUsuario(UsuarioDTO usuarioDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
+// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
