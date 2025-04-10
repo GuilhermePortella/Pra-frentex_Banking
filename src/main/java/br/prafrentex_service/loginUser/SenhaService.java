@@ -10,7 +10,7 @@ import java.util.Base64;
 public class SenhaService {
     private static final SecureRandom random = new SecureRandom();
 
-    public static String gerarHashSenha(String senha) {  // Agora é estático
+    public static String gerarHashSenha(String senha) { 
         return Base64.getEncoder().encodeToString((senha + "SALT").getBytes());
     }
 
