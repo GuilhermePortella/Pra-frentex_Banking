@@ -1,16 +1,17 @@
 package br.prafrentex_service.loginUser;
 
-import br.prafrentex_domain.ContaPF;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import org.mindrot.jbcrypt.BCrypt;
+
+import javax.inject.Inject;
+
+import org.slf4j.LoggerFactory;
 
 import br.prafrentex_domain.Usuario;
+import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -18,18 +19,26 @@ import java.util.Random;
  */
 public class AuthService {
 
+    @Inject
+    CadastroUsuarioService cadastroUsuarioService;
+
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AuthService.class);
+
+
     private final Scanner scanner = new Scanner(System.in);
     private final List<Usuario> contasPF = new ArrayList<>();
-
+    
     public void cadastrarUsuario() {
         Usuario usuario = coletarDadosUsuario();
-        String agencia = gerarAgencia();
-        String conta = gerarConta();
+        String agencia = cadastroUsuarioService.gerarAgencia();
+        String conta = cadastroUsuarioService.gerarConta();
         adicionarContaPF(usuario, agencia, conta);
     }
 
     private Usuario coletarDadosUsuario() {
         Usuario usuario = new Usuario();
+
+        logger.info("Iniciando cadastro de usuário");
 
         System.out.println("Bem-vindo ao sistema de cadastro de usuários");
 
@@ -55,7 +64,7 @@ public class AuthService {
         return usuario;
     }
 
-    private void adicionarContaPF(Usuario usuario, String agencia, String conta) {
+    protected void adicionarContaPF(Usuario usuario, String agencia, String conta) {
         usuario.setAgencia(agencia);
         usuario.setConta(conta);
         contasPF.add(usuario);
@@ -80,16 +89,6 @@ public class AuthService {
                 System.out.println("-------------------------------");
             }
         }
-    }
-
-    private String gerarAgencia() {
-        Random random = new Random();
-        return String.format("%04d", random.nextInt(10000));
-    }
-
-    private String gerarConta() {
-        Random random = new Random();
-        return String.format("%09d", random.nextInt(1000000000));
     }
 
     public void processarCadastroEExibicao() {

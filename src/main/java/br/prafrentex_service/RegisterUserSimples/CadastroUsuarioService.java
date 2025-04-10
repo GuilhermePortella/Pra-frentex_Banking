@@ -1,6 +1,8 @@
 package br.prafrentex_service.RegisterUserSimples;
 
 import br.prafrentex_domain.Usuario;
+
+import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -83,12 +85,12 @@ public class CadastroUsuarioService extends Usuario {
         }
     }
 
-    private String gerarAgencia() {
+    public String gerarAgencia() {
         Random random = new Random();
         return String.format("%04d", random.nextInt(10000));
     }
 
-    private String gerarConta() {
+    public String gerarConta() {
         Random random = new Random();
         return String.format("%09d", random.nextInt(1000000000));
     }
