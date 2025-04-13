@@ -1,83 +1,72 @@
 package br.prafrentex_service.loginUser;
 
-import br.prafrentex_domain.Usuario;
-import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import br.prafrentex_domain.Usuario;
+import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class AuthServiceTest {
 
-    // @InjectMocks
-    // private AuthService authService;
+    @InjectMocks
+    private AuthService authService;
 
-    // @Mock
-    // private CadastroUsuarioService cadastroUsuarioService;
+    @Mock
+    private CadastroUsuarioService cadastroUsuarioService;
 
-    // @BeforeAll
-    // public void setUp() {
-    //     MockitoAnnotations.openMocks(this); // Use 'this' instead of the class
-    // }
+    @BeforeAll
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-    // @Test
-    // public void testAdicionarContaPF() {
-    //     Usuario usuario = new Usuario();
-    //     usuario.setNome("João");
-    //     usuario.setSobrenome("Silva");
-    //     usuario.setCpf("123.456.789-00");
-    //     String agencia = "1234";
-    //     String conta = "567890";
+    @Test
+    public void testAdicionarContaPF() {
+        Usuario usuario = new Usuario();
+        String agencia = "0001";
+        String conta = "12345-6";
 
-    //     authService.adicionarContaPF(usuario, agencia, conta);
+        authService.adicionarContaPF(usuario, agencia, conta);
 
-    //     List<Usuario> contasPF = authService.criarListaContasPF();
-    //     assertEquals(1, contasPF.size());
-    //     assertEquals("João", contasPF.get(0).getNome());
-    //     assertEquals("1234", contasPF.get(0).getAgencia());
-    //     assertEquals("567890", contasPF.get(0).getConta());
-    // }
+        List<Usuario> contas = authService.criarListaContasPF();
+        assertFalse(contas.isEmpty());
+        assertEquals(1, contas.size());
+        assertEquals(agencia, contas.get(0).getAgencia());
+        assertEquals(conta, contas.get(0).getConta());
+    }
 
-    // @Test
-    // public void testCadastrarUsuario() {
-    //     when(cadastroUsuarioService.gerarAgencia()).thenReturn("1234");
-    //     when(cadastroUsuarioService.gerarConta()).thenReturn("567890");
+    @Test
+    public void testCriarListaContasPFVazia() {
+        List<Usuario> contas = authService.criarListaContasPF();
+        assertNotNull(contas);
+    }
 
-    //     System.setIn(new java.io.ByteArrayInputStream(
-    //             ("João\nSilva\n2000-01-01\njoao@email.com\n123.456.789-00\nsenha123\n").getBytes()));
+    @Test
+    public void testCadastrarUsuario() {
+        when(cadastroUsuarioService.gerarAgencia()).thenReturn("0001");
+        when(cadastroUsuarioService.gerarConta()).thenReturn("12345-6");
 
-    //     authService.cadastrarUsuario();
+        Usuario usuario = new Usuario();
+        usuario.setNome("Test");
+        usuario.setCpf("123.456.789-00");
 
-    //     List<Usuario> contasPF = authService.criarListaContasPF();
-    //     assertEquals(1, contasPF.size());
-    //     Usuario usuario = contasPF.get(0);
-    //     assertEquals("João", usuario.getNome());
-    //     assertEquals("Silva", usuario.getSobrenome());
-    //     assertEquals("1234", usuario.getAgencia());
-    //     assertEquals("567890", usuario.getConta());
-    // }
+        authService.adicionarContaPF(usuario, "0001", "12345-6");
 
-    // @Test
-    // public void testExibirDadosUsuarios() {
-    //     Usuario usuario = new Usuario();
-    //     usuario.setNome("João");
-    //     usuario.setSobrenome("Silva");
-    //     usuario.setCpf("123.456.789-00");
-    //     usuario.setAgencia("1234");
-    //     usuario.setConta("567890");
-    //     authService.adicionarContaPF(usuario, "1234", "567890");
-
-    //     authService.exibirDadosUsuarios();
-
-    //     assertNotNull(usuario);
-
-    // }
+        List<Usuario> contas = authService.criarListaContasPF();
+        assertFalse(contas.isEmpty());
+        assertEquals("0001", contas.get(0).getAgencia());
+        assertEquals("12345-6", contas.get(0).getConta());
+    }
 }
