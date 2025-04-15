@@ -4,6 +4,7 @@ C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_servi
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\UsuarioController.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\UsuarioDTO.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_domain\ContaPF.java
+C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_domain\OperacaoConta.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\UsuarioDAO.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\GlobalExceptionHandler.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\UsuarioService.java
@@ -17,9 +18,11 @@ C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_servi
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_resource\Main.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\CPFValidation\ValidCPFValidator.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\CNPJValidation\ValidCNPJ.java
+C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_domain\TipoOperacao.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\loginUser\AuthService.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_domain\Usuario.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\loginUser\SenhaService.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\Credenciais.java
+C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\ContaOperacoesService.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\CNPJValidation\ValidCPFValidator.java
 C:\Users\Guilherme\Desktop\Pra-frentex_Banking\src\main\java\br\prafrentex_service\RegisterUser\RegisterServlet.java
