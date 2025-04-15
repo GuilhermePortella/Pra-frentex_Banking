@@ -1,5 +1,7 @@
+br\prafrentex_domain\TipoOperacao.class
 br\prafrentex_domain\ContaPF.class
 br\prafrentex_service\ServiceProcess.class
+br\prafrentex_domain\OperacaoConta.class
 br\prafrentex_service\CPFValidation\ValidCPF.class
 br\prafrentex_service\RegisterUser\UsuarioService.class
 br\prafrentex_service\RegisterUser\UsuarioDAO.class
@@ -11,6 +13,7 @@ br\prafrentex_service\RegisterUser\UsuarioController.class
 br\prafrentex_service\RegisterUser\SuccessMessage.class
 br\prafrentex_service\RegisterUser\JAXRSConfiguration.class
 br\prafrentex_service\AbrirContaPJ.class
+br\prafrentex_service\ContaOperacoesService.class
 br\prafrentex_domain\Usuario.class
 br\prafrentex_service\RegisterUser\Credenciais.class
 br\prafrentex_service\RegisterUser\ErrorMessage.class
