@@ -2,20 +2,18 @@ package br.prafrentex_service.RegisterUserSimples;
 
 import br.prafrentex_domain.Usuario;
 
-import java.security.ProtectionDomain;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
- *
  * @author Guilherme
  */
 public class CadastroUsuarioService extends Usuario {
 
     private final Scanner scanner = new Scanner(System.in);
     private List<Usuario> contasPF = new ArrayList<>();
+    private Map<String, BigDecimal> saldoContas = new HashMap<>();
+    private static final BigDecimal SALDO_INICIAL = BigDecimal.ZERO;
 
     public void cadastrarUsuario() {
         Usuario usuario = coletarDadosUsuario();
@@ -28,6 +26,45 @@ public class CadastroUsuarioService extends Usuario {
         usuario.setAgencia(agencia);
         usuario.setConta(conta);
         contasPF.add(usuario);
+        saldoContas.put(conta, SALDO_INICIAL);
+    }
+
+    public BigDecimal consultarSaldo(String numeroConta) {
+        return saldoContas.getOrDefault(numeroConta, BigDecimal.ZERO);
+    }
+
+    public void depositar(String numeroConta, BigDecimal valor) {
+        validarValor(valor);
+        BigDecimal saldoAtual = consultarSaldo(numeroConta);
+        saldoContas.put(numeroConta, saldoAtual.add(valor));
+    }
+
+    public void sacar(String numeroConta, BigDecimal valor) {
+        validarValor(valor);
+        BigDecimal saldoAtual = consultarSaldo(numeroConta);
+        if (saldoAtual.compareTo(valor) < 0) {
+            throw new IllegalStateException("Saldo insuficiente");
+        }
+        saldoContas.put(numeroConta, saldoAtual.subtract(valor));
+    }
+
+    public void transferir(String contaOrigem, String contaDestino, BigDecimal valor) {
+        sacar(contaOrigem, valor);
+        depositar(contaDestino, valor);
+    }
+
+    public void encerrarConta(String numeroConta) {
+        if (saldoContas.get(numeroConta).compareTo(BigDecimal.ZERO) != 0) {
+            throw new IllegalStateException("Conta com saldo não pode ser encerrada");
+        }
+        saldoContas.remove(numeroConta);
+        contasPF.removeIf(usuario -> usuario.getConta().equals(numeroConta));
+    }
+
+    private void validarValor(BigDecimal valor) {
+        if (valor == null || valor.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Valor deve ser maior que zero");
+        }
     }
 
     public List<Usuario> criarListaContasPF() {
@@ -55,9 +92,6 @@ public class CadastroUsuarioService extends Usuario {
         System.out.print("Informe seu sobrenome: ");
         this.sobrenome = scanner.nextLine();
 
-//        System.out.print("Informe sua idade: ");
-//        this.idade = Integer.parseInt(scanner.nextLine());
-
         System.out.print("Informe seu email: ");
         this.email = scanner.nextLine();
 
@@ -65,7 +99,6 @@ public class CadastroUsuarioService extends Usuario {
         this.cpf = scanner.nextLine();
 
         return new Usuario(nome, sobrenome, email, cpf);
-        //return new Usuario(nome, sobrenome, idade, email, cpf);
     }
 
     public void exibirDadosUsuarios() {
@@ -80,6 +113,7 @@ public class CadastroUsuarioService extends Usuario {
                 System.out.println("CPF: " + usuario.getCpf());
                 System.out.println("Agência: " + usuario.getAgencia());
                 System.out.println("Conta: " + usuario.getConta());
+                System.out.println("Saldo: R$ " + consultarSaldo(usuario.getConta()));
                 System.out.println("-------------------------------");
             }
         }
