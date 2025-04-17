@@ -3,6 +3,9 @@ package br.prafrentex_service;
 import br.prafrentex_domain.OperacaoConta;
 import br.prafrentex_domain.TipoOperacao;
 import br.prafrentex_domain.Usuario;
+import br.prafrentex_service.audit.AuditLogger;
+import br.prafrentex_service.audit.LoggedTransaction;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -11,6 +14,8 @@ import org.slf4j.LoggerFactory;
 
 public class ContaOperacoesService {
     private static final Logger logger = LoggerFactory.getLogger(ContaOperacoesService.class);
+    private final AuditLogger auditLogger = new AuditLogger();
+
     private Map<String, BigDecimal> saldoContas = new HashMap<>();
     private Map<String, List<OperacaoConta>> historicoOperacoes = new HashMap<>();
     private Set<String> numerosContaExistentes = new HashSet<>();
@@ -63,21 +68,27 @@ public class ContaOperacoesService {
         logger.info("Saque realizado: Conta {}, Valor {}", numeroConta, valor);
     }
 
+    @LoggedTransaction
     public void transferir(String contaOrigem, String contaDestino, BigDecimal valor) {
-        validarConta(contaOrigem);
-        validarConta(contaDestino);
-        validarValor(valor);
-        
-        sacar(contaOrigem, valor);
-        depositar(contaDestino, valor);
-        
-        registrarOperacao(contaOrigem, TipoOperacao.TRANSFERENCIA, valor.negate(), 
-            "Transferência para conta " + contaDestino);
-        registrarOperacao(contaDestino, TipoOperacao.TRANSFERENCIA, valor,
-            "Transferência da conta " + contaOrigem);
-        
-        logger.info("Transferência realizada: De {} para {}, Valor {}", 
-            contaOrigem, contaDestino, valor);
+        try {
+            validarConta(contaOrigem);
+            validarConta(contaDestino);
+            validarValor(valor);
+            
+            sacar(contaOrigem, valor);
+            depositar(contaDestino, valor);
+            
+            auditLogger.logOperacao(
+                contaOrigem,
+                "TRANSFERENCIA",
+                String.format("Transferência de %s para %s, valor: %s", 
+                    contaOrigem, contaDestino, valor)
+            );
+            
+        } catch (Exception e) {
+            auditLogger.logErro(contaOrigem, "TRANSFERENCIA_ERRO", e);
+            throw e;
+        }
     }
 
     public void pagarBoleto(String numeroConta, BigDecimal valor, String codigoBoleto) {
