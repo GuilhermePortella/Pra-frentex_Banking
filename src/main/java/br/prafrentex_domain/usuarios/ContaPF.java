@@ -1,4 +1,4 @@
-package br.prafrentex_domain;
+package br.prafrentex_domain.usuarios;
 
 /**
  *

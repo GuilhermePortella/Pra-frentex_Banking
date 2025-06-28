@@ -1,6 +1,6 @@
 package br.prafrentex_service.RegisterUserSimples;
 
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 
 import java.math.BigDecimal;
 import java.util.*;

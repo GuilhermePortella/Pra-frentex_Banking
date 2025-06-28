@@ -1,7 +1,7 @@
 package br.prafrentex_service.RegisterUser;
 
 import org.mindrot.jbcrypt.BCrypt;
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 import java.time.LocalDate;
 import java.util.Optional;
 
