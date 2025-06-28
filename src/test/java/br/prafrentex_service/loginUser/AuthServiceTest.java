@@ -15,7 +15,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
 
 @TestInstance(Lifecycle.PER_CLASS)

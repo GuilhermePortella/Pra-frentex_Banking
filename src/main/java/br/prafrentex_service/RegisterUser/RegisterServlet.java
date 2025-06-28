@@ -1,6 +1,6 @@
 package br.prafrentex_service.RegisterUser;
 
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.slf4j.LoggerFactory;
 
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
 
 import java.time.LocalDate;

@@ -2,7 +2,7 @@ package br.prafrentex_service.RegisterUser;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.usuarios.Usuario;
 
 
 
