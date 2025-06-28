@@ -29,7 +29,7 @@ br.prafrentex_service.CPFValidation / CNPJValidation
 
 ## ⚠️ Pontos de Atenção
 
-| Ponto de Atenção                      | Impacto Potencial                          | Recomendacão                                                              |
+| Ponto de Atenção                      | Impacto Potencial                          | Recomendação                                                              |
 | ------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------- |
 | Acoplamento entre entidades           | Aumenta complexidade e reduz flexibilidade | Usar abstrações ou Value Objects                                          |
 | Lógica duplicada entre serviços       | Código difícil de manter/testar            | Consolidar em um único serviço por responsabilidade                       |
@@ -40,29 +40,51 @@ br.prafrentex_service.CPFValidation / CNPJValidation
 
 ---
 
-## 📀 Sugestão de Nova Arquitetura (em Java puro)
+## 📂 Sugestão de Nova Arquitetura (em Java puro)
 
 ```
 src/
 ├── domain/
 │   ├── model/
 │   │   ├── usuario/
-│   │   ├── conta/
-│   │   └── operacao/
+│   │   │   ├── Usuario.java
+│   │   │   ├── ContaPF.java
+│   │   │   └── ContaPJ.java
+│   │   ├── operacao/
+│   │   │   ├── OperacaoConta.java
+│   │   │   └── TipoOperacao.java
 │   └── service/
-│       └── regras/               # Serviços com regras de negócio puras
+│       └── regras/
+│           ├── ContaService.java
+│           └── UsuarioService.java
 ├── application/
-│   ├── usecases/                # Coordenam os fluxos (ex: AbrirContaUseCase)
-│   └── dto/                     # Dados de entrada/saída
+│   ├── usecases/
+│   │   ├── AbrirContaPFUseCase.java
+│   │   ├── TransferirUseCase.java
+│   │   └── AutenticarUsuarioUseCase.java
+│   └── dto/
+│       ├── UsuarioDTO.java
+│       └── ContaDTO.java
 ├── infrastructure/
-│   ├── repository/              # Implementação da persistência
-│   ├── validation/              # Validação de documentos, etc
-│   └── audit/                   # Logging e auditoria
+│   ├── repository/
+│   │   ├── UsuarioRepository.java (interface)
+│   │   ├── ContaRepository.java (interface)
+│   │   ├── InMemoryUsuarioRepository.java
+│   │   └── InMemoryContaRepository.java
+│   ├── validation/
+│   │   ├── CPFValidator.java
+│   │   └── CNPJValidator.java
+│   └── audit/
+│       └── AuditLogger.java
 ├── interfaces/
-│   └── console/                 # Interface de entrada (menus, inputs)
+│   └── console/
+│       ├── Main.java
+│       └── MenuUI.java
 ```
 
-### 🔀 Camadas Propostas
+---
+
+## 🔁 Camadas Propostas
 
 | Camada           | Responsabilidade                                              |
 | ---------------- | ------------------------------------------------------------- |
@@ -103,13 +125,3 @@ src/
 * **Persistência com arquivos locais ou bancos simples (SQLite).**
 
 ---
-
-## 👨‍💻 Contribuidores
-
-* Guilherme Portella - Backend Pleno / Arquitetura de Sistemas
-
----
-
-## 📄 Licença
-
-Projeto acadêmico. Todos os direitos reservados.
