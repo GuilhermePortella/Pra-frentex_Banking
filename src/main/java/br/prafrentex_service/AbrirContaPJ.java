@@ -1,6 +1,6 @@
 package br.prafrentex_service;
 
-import br.prafrentex_domain.ContaPJ;
+import br.prafrentex_domain.usuarios.ContaPJ;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
