@@ -1,8 +1,8 @@
 package br.prafrentex_service;
 
-import br.prafrentex_domain.OperacaoConta;
-import br.prafrentex_domain.TipoOperacao;
-import br.prafrentex_domain.Usuario;
+import br.prafrentex_domain.operacao.OperacaoConta;
+import br.prafrentex_domain.operacao.TipoOperacao;
+import br.prafrentex_domain.usuarios.Usuario;
 import br.prafrentex_service.audit.AuditLogger;
 import br.prafrentex_service.audit.LoggedTransaction;
 
