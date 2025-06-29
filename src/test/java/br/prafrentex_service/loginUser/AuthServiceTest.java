@@ -1,12 +1,12 @@
 package br.prafrentex_service.loginUser;
 
+import br.domain.model.usuarios.Usuario;
+import br.service.RegisterUserSimples.CadastroUsuarioService;
+import br.service.loginUser.AuthService;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,9 +14,10 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import br.prafrentex_domain.usuarios.Usuario;
-import br.prafrentex_service.RegisterUserSimples.CadastroUsuarioService;
+
+
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class AuthServiceTest {
