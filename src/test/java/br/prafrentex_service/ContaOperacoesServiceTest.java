@@ -3,7 +3,8 @@ package br.prafrentex_service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.prafrentex_domain.OperacaoConta;
+import br.domain.model.operacao.OperacaoConta;
+import br.service.ContaOperacoesService;
 
 import java.math.BigDecimal;
 import java.util.List;
